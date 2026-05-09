@@ -1,0 +1,487 @@
+/* The Evolution of Eyes · 眼之演化
+   Cosmic-biological aesthetic · deep ink with iris-amber + neural-violet + retina-cyan
+   Aboreto (display) · Lexend (body) · Roboto Mono (mono) */
+
+:root {
+  --bg: #0a0c10;
+  --surface: #13161c;
+  --surface-2: #1d2129;
+  --surface-3: #262b35;
+  --border: rgba(233, 230, 220, 0.10);
+  --border-strong: rgba(233, 230, 220, 0.24);
+
+  --ink: #e9e6dc;
+  --ink-dim: #9a9890;
+  --ink-mute: #5d5b53;
+
+  --iris:    #d49a3a;          /* iris/sun gold — primary accent */
+  --neural:  #9376ff;           /* synaptic violet */
+  --retina:  #5fc8d4;           /* opsin/cyan */
+  --blood:   #c44a40;           /* alarm red — used sparingly */
+  --leaf:    #8fc26b;           /* signal green */
+
+  --iris-soft:   rgba(212, 154, 58, 0.12);
+  --neural-soft: rgba(147, 118, 255, 0.12);
+  --retina-soft: rgba(95, 200, 212, 0.12);
+
+  --shadow: 0 22px 56px rgba(0, 0, 0, 0.55);
+  --radius: 4px;
+  --radius-lg: 14px;
+  --maxw: 1280px;
+
+  --display: "Aboreto", "Tenor Sans", system-ui, serif;
+  --body:    "Lexend", "Inter", system-ui, sans-serif;
+  --mono:    "Roboto Mono", ui-monospace, monospace;
+}
+
+html[data-theme="light"] {
+  --bg: #f5f3ec;
+  --surface: #ffffff;
+  --surface-2: #ece9df;
+  --surface-3: #ddd9cc;
+  --border: rgba(13, 16, 22, 0.13);
+  --border-strong: rgba(13, 16, 22, 0.30);
+  --ink: #13161c;
+  --ink-dim: #50555f;
+  --ink-mute: #7a7e88;
+  --iris:    #94621c;
+  --neural:  #5d44c8;
+  --retina:  #1f8a98;
+  --blood:   #98342c;
+  --leaf:    #4f7a32;
+  --iris-soft:   rgba(148, 98, 28, 0.10);
+  --neural-soft: rgba(93, 68, 200, 0.10);
+  --retina-soft: rgba(31, 138, 152, 0.10);
+  --shadow: 0 14px 36px rgba(13, 16, 22, 0.14);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html[data-lang="en"] [lang="zh"] { display: none !important; }
+html[data-lang="zh"] [lang="en"] { display: none !important; }
+
+a { color: var(--retina); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+::selection { background: var(--iris-soft); color: var(--ink); }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+/* ─── Topbar ─────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 18px; height: 68px;
+}
+.brand {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--display); font-size: 21px; letter-spacing: 0.01em;
+  color: var(--ink);
+}
+.brand-mark {
+  width: 30px; height: 30px; flex: 0 0 auto;
+  position: relative;
+}
+.brand-mark svg { width: 100%; height: 100%; display: block; }
+.brand small {
+  font-family: var(--mono); font-size: 10.5px; color: var(--ink-mute);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  margin-left: 4px;
+}
+.nav { display: flex; gap: 22px; align-items: center; }
+.nav a {
+  color: var(--ink-dim); font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.nav a:hover { color: var(--ink); text-decoration: none; }
+
+.controls { display: flex; gap: 8px; align-items: center; }
+.lang-toggle, .theme-toggle {
+  display: inline-flex; border: 1px solid var(--border-strong);
+  border-radius: 999px; overflow: hidden; background: var(--surface);
+}
+.lang-toggle button, .theme-toggle button {
+  font-family: var(--mono); font-size: 11.5px;
+  background: transparent; color: var(--ink-dim); border: 0;
+  padding: 6px 12px; cursor: pointer;
+}
+.lang-toggle button.active, .theme-toggle button.active {
+  background: var(--ink); color: var(--bg);
+}
+
+@media (max-width: 1020px) { .nav { display: none; } }
+
+/* ─── Hero ─────────────────────────────── */
+.hero {
+  padding: 130px 0 110px;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(50% 70% at 75% 25%, var(--iris-soft), transparent 60%),
+    radial-gradient(45% 60% at 22% 80%, var(--neural-soft), transparent 60%),
+    radial-gradient(35% 45% at 60% 95%, var(--retina-soft), transparent 60%);
+  pointer-events: none;
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(233, 230, 220, 0.06) 1px, transparent 0);
+  background-size: 28px 28px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 80% 65% at center, black 30%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 65% at center, black 30%, transparent 90%);
+}
+.hero-inner { position: relative; }
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.18em;
+  color: var(--iris); margin-bottom: 28px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(48px, 7.4vw, 100px);
+  line-height: 1.04; letter-spacing: -0.012em;
+  margin: 0 0 26px; color: var(--ink);
+}
+.hero h1 em {
+  font-style: italic; color: var(--iris);
+}
+.hero h1 em.n { color: var(--neural); }
+.hero h1 em.r { color: var(--retina); }
+
+.hero-sub {
+  font-size: 18px; color: var(--ink-dim); max-width: 760px;
+  margin: 0 0 36px; line-height: 1.65;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 28px;
+  font-family: var(--mono); font-size: 11.5px;
+  color: var(--ink-mute); border-top: 1px solid var(--border);
+  padding-top: 22px;
+}
+.hero-meta div { display: flex; flex-direction: column; gap: 4px; }
+.hero-meta div span:first-child {
+  font-family: var(--display); font-size: 22px;
+  color: var(--ink); letter-spacing: 0;
+}
+
+/* ─── Section ─────────────────────────────── */
+section.module {
+  padding: 100px 0; border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.section-head {
+  display: grid; grid-template-columns: 220px 1fr; gap: 40px;
+  margin-bottom: 44px; align-items: start;
+}
+.section-tag {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em;
+  color: var(--ink-mute); text-transform: uppercase;
+}
+.section-tag .num { color: var(--iris); font-weight: 700; margin-right: 8px; }
+.section-head h2 {
+  font-family: var(--display); font-weight: 400; font-style: italic;
+  font-size: clamp(32px, 4.6vw, 56px); margin: 0;
+  line-height: 1.06; color: var(--ink); letter-spacing: -0.01em;
+}
+.section-lede {
+  margin-top: 18px; color: var(--ink-dim); max-width: 800px;
+  font-size: 16.5px; line-height: 1.7;
+}
+@media (max-width: 760px) { .section-head { grid-template-columns: 1fr; gap: 12px; } }
+
+/* ─── Visualization card ─────────────────────────────── */
+.viz-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+.viz-svg-wrap { width: 100%; overflow: hidden; border-radius: 10px; }
+.viz-svg { width: 100%; height: auto; display: block; }
+
+/* ─── Eye-evolution timeline ─────────────────────────────── */
+.evo-timeline {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(140px, 1fr));
+  gap: 0;
+  position: relative;
+  min-width: 1180px;
+  padding-bottom: 40px;
+}
+.evo-timeline::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 12px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neural), var(--iris), var(--retina), transparent);
+  opacity: 0.55;
+}
+.evo-node { position: relative; padding: 0 14px 32px; }
+.evo-node .dot {
+  position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%);
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--accent, var(--iris));
+}
+.evo-node .stem {
+  position: absolute; bottom: 21px; left: 50%; transform: translateX(-50%);
+  width: 1px; height: 30px;
+  background: var(--border-strong);
+}
+.evo-node .when {
+  font-family: var(--mono); font-size: 10.5px; color: var(--ink-mute);
+  letter-spacing: 0.04em; margin-bottom: 6px;
+}
+.evo-node .what {
+  font-family: var(--display); font-size: 20px;
+  color: var(--ink); margin-bottom: 8px; line-height: 1.18;
+}
+.evo-node .ico { width: 50px; height: 50px; margin-bottom: 8px; opacity: 0.85; }
+.evo-node .ico svg { width: 100%; height: 100%; }
+.evo-node .blurb {
+  font-size: 13px; color: var(--ink-dim); line-height: 1.55;
+}
+
+/* ─── Cards ─────────────────────────────── */
+.card-row {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 26px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.card:hover { border-color: var(--border-strong); transform: translateY(-3px); }
+.card .kicker {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent, var(--iris)); margin-bottom: 12px;
+}
+.card.iris   { --accent: var(--iris); }
+.card.neural { --accent: var(--neural); }
+.card.retina { --accent: var(--retina); }
+.card.blood  { --accent: var(--blood); }
+.card.leaf   { --accent: var(--leaf); }
+.card h3 {
+  font-family: var(--display); font-weight: 400; font-style: italic;
+  font-size: 24px; margin: 0 0 12px; color: var(--ink); line-height: 1.2;
+}
+.card p { color: var(--ink-dim); font-size: 14.5px; line-height: 1.7; margin: 0 0 8px; }
+
+/* ─── Species comparison ─────────────────────────────── */
+.species-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+.species {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 22px; text-align: center;
+}
+.species .ico { height: 80px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
+.species .ico svg { width: 100%; height: 100%; max-height: 80px; }
+.species .name {
+  font-family: var(--display); font-size: 22px;
+  margin-bottom: 4px; color: var(--ink);
+}
+.species .latin {
+  font-family: var(--display); font-style: italic; font-size: 13px;
+  color: var(--ink-dim); margin-bottom: 12px;
+}
+.species .stat {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-mute);
+  display: grid; grid-template-columns: 1fr; gap: 4px; margin-bottom: 8px;
+  text-align: left;
+}
+.species .stat span { color: var(--ink); margin-left: 6px; font-family: var(--display); }
+.species .desc { font-size: 13.5px; color: var(--ink-dim); line-height: 1.55; text-align: left; }
+
+/* ─── Comparison table ─────────────────────────────── */
+.comp-table {
+  width: 100%; border-collapse: collapse; font-size: 14.5px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.comp-table th, .comp-table td {
+  text-align: left; padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.comp-table th {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em;
+  color: var(--iris);
+  background: var(--surface-2);
+  text-transform: uppercase;
+}
+.comp-table tr:last-child td { border-bottom: 0; }
+.comp-table td:first-child { color: var(--ink); font-family: var(--display); font-size: 16px; font-style: italic; }
+
+/* ─── EM spectrum bar ─────────────────────────────── */
+.spectrum {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 26px;
+}
+.spectrum-bar {
+  height: 50px; border-radius: 8px;
+  background: linear-gradient(90deg,
+    #2a2a52 0%,    /* gamma/x-ray collapsed */
+    #5544b8 12%,   /* UV */
+    #6b3aff 18%,
+    #4d3aff 22%,   /* violet */
+    #3aafff 28%,   /* blue */
+    #3affd1 36%,   /* cyan */
+    #5cff66 45%,   /* green */
+    #ddff3a 55%,   /* yellow */
+    #ffaf3a 65%,   /* orange */
+    #ff5757 75%,   /* red */
+    #b04444 82%,   /* deep red */
+    #4a2a2a 100%); /* IR collapsed */
+  position: relative;
+  margin-bottom: 14px;
+}
+.spectrum-bar .visible-band {
+  position: absolute; top: -6px; bottom: -6px; left: 22%; right: 25%;
+  border: 1px dashed rgba(233, 230, 220, 0.55);
+  border-radius: 6px;
+  pointer-events: none;
+}
+.spectrum-labels {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: 10.5px; color: var(--ink-dim);
+  letter-spacing: 0.04em;
+}
+
+/* ─── Predator-prey simulator ─────────────────────────────── */
+.sim-shell {
+  display: grid; grid-template-columns: 320px 1fr; gap: 26px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 28px;
+}
+@media (max-width: 920px) { .sim-shell { grid-template-columns: 1fr; } }
+.sim-shell h3 {
+  font-family: var(--display); font-weight: 400; font-style: italic;
+  font-size: 22px; margin: 0 0 16px;
+}
+.sim-controls label {
+  display: block; font-family: var(--mono); font-size: 10.5px;
+  letter-spacing: 0.10em; color: var(--ink-mute);
+  margin-bottom: 6px; margin-top: 16px; text-transform: uppercase;
+}
+.sim-controls select, .sim-controls input[type="range"] {
+  width: 100%;
+  background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--border-strong); border-radius: 6px;
+  padding: 9px 12px; font-family: var(--mono); font-size: 13px;
+}
+.sim-output { display: flex; flex-direction: column; gap: 14px; }
+.sim-output .sbar {
+  display: grid; grid-template-columns: 200px 1fr 60px;
+  gap: 12px; align-items: center;
+  font-family: var(--mono); font-size: 12px; color: var(--ink-dim);
+}
+.sim-output .sbar .meter {
+  height: 9px; border-radius: 4px;
+  background: var(--surface-2); position: relative; overflow: hidden;
+}
+.sim-output .sbar .meter > i {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: linear-gradient(90deg, var(--neural), var(--iris));
+  transition: width 0.4s;
+}
+.sim-output .sbar .v { color: var(--ink); text-align: right; font-family: var(--display); font-size: 17px; font-style: italic; }
+.sim-readout {
+  font-family: var(--mono); font-size: 12.5px; color: var(--ink-dim);
+  border: 1px dashed var(--border-strong);
+  border-radius: 8px; padding: 14px 16px; margin-top: 8px;
+  line-height: 1.7;
+}
+
+/* ─── AI biologist ─────────────────────────────── */
+.ai-shell {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 30px;
+  box-shadow: var(--shadow);
+}
+.ai-prompts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.ai-prompt {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.02em;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 9px 16px; color: var(--ink-dim);
+  cursor: pointer; transition: all 0.16s;
+}
+.ai-prompt:hover { color: var(--ink); border-color: var(--iris); }
+.ai-input-row { display: flex; gap: 10px; }
+.ai-input-row input {
+  flex: 1; background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--border-strong); border-radius: 8px;
+  padding: 12px 16px; font-family: var(--body); font-size: 14.5px;
+}
+.ai-input-row button {
+  background: var(--iris); color: var(--bg); border: 0;
+  padding: 12px 24px; font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  border-radius: 8px; cursor: pointer; font-weight: 700;
+}
+.ai-input-row button:hover { background: var(--neural); color: var(--ink); }
+.ai-output {
+  margin-top: 22px; min-height: 80px;
+  font-size: 15.5px; line-height: 1.78; color: var(--ink-dim);
+  border-top: 1px solid var(--border); padding-top: 20px;
+}
+.ai-output strong { color: var(--ink); }
+.ai-output em {
+  font-style: normal; color: var(--iris); font-family: var(--mono);
+  font-size: 12.5px; letter-spacing: 0.04em;
+}
+.ai-output p { margin: 0 0 12px; }
+
+/* ─── Guardrails ─────────────────────────────── */
+.guardrails {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 28px;
+  border-left: 3px solid var(--blood);
+}
+.guardrails h3 { font-family: var(--display); font-style: italic; font-weight: 400; margin: 0 0 14px; font-size: 22px; }
+.guardrails ul { margin: 0; padding-left: 22px; }
+.guardrails li { color: var(--ink-dim); margin-bottom: 12px; font-size: 14.5px; line-height: 1.7; }
+
+/* ─── Footer ─────────────────────────────── */
+footer {
+  padding: 70px 0 50px;
+  font-family: var(--mono); font-size: 12px; color: var(--ink-mute);
+  letter-spacing: 0.02em;
+}
+footer a { color: var(--ink-dim); }
+footer .foot-row {
+  display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+}
+footer .links { display: flex; gap: 22px; flex-wrap: wrap; }
+
+/* ─── Util ─────────────────────────────── */
+.mono { font-family: var(--mono); }
+.dim  { color: var(--ink-dim); }
+.tag-iris   { color: var(--iris); }
+.tag-neural { color: var(--neural); }
+.tag-retina { color: var(--retina); }
+.tag-blood  { color: var(--blood); }
+.tag-leaf   { color: var(--leaf); }
